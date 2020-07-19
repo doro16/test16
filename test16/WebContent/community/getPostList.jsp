@@ -136,7 +136,7 @@
       
       </table>
 	  <!--  table End /////////////////////////////////////-->
-	  
+	   <button type="button" class="btn btn-default"  onclick="location.href='addPost.jsp'">글쓰기</button>
  	</div>
  	<!--  화면구성 div End /////////////////////////////////////-->
  	
