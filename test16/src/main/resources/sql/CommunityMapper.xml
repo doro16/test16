@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="CommunityMapper">
+	
+	<resultMap id="postSelectMap" type="post">
+		
+		<result property="postNo"		column="post_no"		jdbcType="INTEGER" />
+		<result property="postType" 	column="post_type"		jdbcType="CHAR" />
+		<result property="user.userId"	column="user_id"		jdbcType="VARCHAR" />
+		
+		<result property="postName"		column="post_name"		jdbcType="VARCHAR" />
+		<result property="postContent"	column="post_content"	jdbcType="VARCHAR" />
+		<result property="postImage"	column="post_image"		jdbcType="VARCHAR" />
+		<result property="regDate" 		column="reg_date" 		jdbcType="DATE" />
+		<result property="qnaRegType"	column="qna_reg_type"	jdbcType="CHAR" />
+		<result property="qnaCode"		column="qna_code"		jdbcType="CHAR" />
+		<result property="blindCode"	column="blind_code"		jdbcType="CHAR" />
+		<result property="viewCount"	column="view_count"		jdbcType="INTEGER" />
+		<result property="commentCount" column="comment_count"  jdbcType="INTEGER" />
+		<result property="reportCount"  column="report_count"	jdbcType="INTEGER" />
+	
+	</resultMap>
+
+	<select id="getPost" parameterType="int" resultMap="postSelectMap" >
+		SELECT p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.post_image,
+			   p.reg_date, p.blind_code, p.view_count, p.comment_count, p.report_count, p.qna_reg_type, p.qna_code
+		FROM post p, users u
+		WHERE p.user_id = u.user_id AND p.post_no = #{postNo}
+	</select>
+	
+	<select id="getPostList" parameterType="search" resultMap="postSelectMap" >
+		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  		FROM (	SELECT  p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.post_image,
+			   				p.reg_date, p.blind_code, p.view_count, p.comment_count, p.report_count, p.qna_reg_type, p.qna_code
+					FROM post p, users u
+					<where>
+					p.user_id = u.user_id(+)
+					
+					<if test="searchCondition != null">	<!-- 검색조건이 있는경우 -->
+					<if test="searchCondition==0">
+						AND p.post_no like '%${searchKeyword}%'
+					</if>
+					<if test="searchCondition==1">
+						AND p.post_name like '%${searchKeyword}%'
+					</if>
+					<if test="searchCondition==2">
+						AND p.post_content '%${searchKeyword}%'
+					</if>
+				</if>
+				</where>
+				ORDER BY post_no desc) inner_table
+			WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	</select>
+	
+	<select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	  SELECT COUNT(*)	
+	  FROM(	SELECT  p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.reg_date
+				FROM post p, users u
+				<where> p.user_id = u.user_id(+)
+				<if test="searchCondition != null">	<!-- 검색조건이 있는경우 -->
+					<if test="searchCondition==0">
+						AND p.post_no like '%${searchKeyword}%'
+					</if>
+					<if test="searchCondition==1">
+						AND p.post_name like '%${searchKeyword}%'
+					</if>
+					<if test="searchCondition==2">
+						AND p.post_content like '%${searchKeyword}%'
+					</if>
+				</if>) countTable	
+				</where>				
+	 </select>
+	<insert id="addPost"  parameterType="post">
+		INSERT INTO
+		post(post_no, post_type, user_id, post_name, post_content, reg_date)
+		VALUES(  
+				#{postType:CHAR}, 
+				#{user.userId},
+				#{postName:VARCHAR}, 
+				#{postContent: VARCHAR}, 
+				SYSDATE))
+	</insert>
+
+	
+	<update id="updatePost" parameterType="post" >
+		UPDATE post
+		<set>
+			post_type=#{postType:CHAR},
+			post_name=#{postName:VARCHAR},
+			post_content=#{postContent:VARCHAR}
+		</set> 
+		WHERE post_no = #{postNo}
+	</update>
+	
+	<delete id="deletePost" parameterType="int" >
+		DELETE
+		FROM post
+		WHERE post_no = #{postNo}
+	</delete>
+	
+	
+
+
+
+</mapper>
