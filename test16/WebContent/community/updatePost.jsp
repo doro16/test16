@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 	
-	function fncAddPost(){
+	function fncUpdatePost(){
 		var postName = $("input[name='postName']").val();
 		var postContent = $("textarea[name='postContent']").val();
 	
@@ -64,7 +64,7 @@
 		
 		$("button:contains('등록')").on("click", function(){
 			
-			fncAddPost()
+			fncUpdatePost()
 		});
 		
 		
@@ -80,7 +80,7 @@
 
 	<div class="mt-5">&nbsp;</div>
 	<div class="container">
-    <h1>게시글 작성</h1>
+    <h1>게시글 수정</h1>
         <form class="form-group my-5 py-5">
             <input type="hidden" name="boardType" value="0">
             <div class="form-row my-3">

@@ -93,7 +93,8 @@ public class CommunityController {
 	
 	@RequestMapping(value="addPost", method=RequestMethod.GET)
 	public String addPost() throws Exception {
-		return "forward:/community/addPost.jsp";
+		
+		return "redirect:/community/addPost.jsp";
 	}
 	
 	@RequestMapping(value="addPost", method=RequestMethod.POST)
@@ -110,6 +111,30 @@ public class CommunityController {
 		return modelAndView;
 	}					 
 	
+	@RequestMapping(value="updatePost", method=RequestMethod.GET)
+	public ModelAndView updatePost(@RequestParam("postNo") int postNo) throws Exception {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Post post = communityService.getPost(postNo);
+		modelAndView.addObject("post", post);
+		modelAndView.setViewName("/community/updatePost.jsp");
+		
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping(value="updatePost", method=RequestMethod.POST)
+	public ModelAndView updatePost(@ModelAttribute("post") Post post ) throws Exception {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		communityService.updatePost(post);
+		int postNo = post.getPostNo();
+		modelAndView.setViewName("/community/getPost?postNo="+postNo);
+		return modelAndView;
+		
+	}
 	
 	
 	
