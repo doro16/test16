@@ -13,6 +13,14 @@
 			self.location = "/community/updatePost?postNo=${post.postNo}"
 		})		
 	});
+	
+	$(function() {
+		$("button:contains('삭제')").on("click", function(){
+			self.location = "/community/deletePost?postNo=${post.postNo}"
+			alert("게시글이 삭제되었습니다.");
+		})
+	});
+
 </script>
 </head>
 <body>
@@ -24,5 +32,6 @@
 <h3>${post.regDate}</h3>
 
 <button type="button" class="btn btn-default">수정하기</button>
+<button type="button" class="btn btn-default">삭제하기</button>
 </body>
 </html>

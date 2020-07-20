@@ -51,8 +51,8 @@ public class CommunityDAOImpl implements CommunityDAO {
 	}
 
 
-	public void deletePost(Post post) throws Exception {
-		sqlSession.delete("CommunityMapper.deletePost", post);
+	public void deletePost(int postNo) throws Exception {
+		sqlSession.delete("CommunityMapper.deletePost", postNo);
 
 	}
 	

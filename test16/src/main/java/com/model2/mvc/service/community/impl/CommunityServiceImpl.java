@@ -59,8 +59,8 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 
-	public void deletePost(Post post) throws Exception {
-		communityDAO.deletePost(post);
+	public void deletePost(int postNo) throws Exception {
+		communityDAO.deletePost(postNo);
 
 	}
 

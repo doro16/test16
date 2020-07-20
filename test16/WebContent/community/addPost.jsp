@@ -24,12 +24,14 @@
 		var postName = $("input[name='postName']").val();
 		var postContent = $("textarea[name='postContent']").val();
 	
-		if(postName == null || postName.length<1){
+		if(postName == null || postName.length <1){
 			alert("제목을 입력해주세요.");
+			return;
 		}
 		
-		if(postContent == null || postContent.length<1){
-			alert("내용을 입력해주세요.")
+		if(postContent == null || postContent.length <1){
+			alert("내용을 입력해주세요.");
+			return;
 		}
 		
 		$("form").attr("method" , "POST").attr("action" , "/community/addPost").attr("enctype", "multipart/form-data").submit();
@@ -82,7 +84,7 @@
 	<div class="container">
     <h1>게시글 작성</h1>
         <form class="form-group my-5 py-5">
-            <input type="hidden" name="boardType" value="0">
+            <input type="hidden" name="postType" value="0">
             <div class="form-row my-3">
                 <div class="input-group col-lg-12">
                     <input type="text" class="form-control" name="postName" placeholder="제목을 입력해주세요">
@@ -90,16 +92,13 @@
             </div>
             <textarea id="summernote" name="postContent"></textarea>
             
-            <div class="form-row d-flex justify-content-center my-5">
-                <button type="button" class="btn btn-outline-basic m-1">취소</button>
-                <button type="button" class="btn btn-basic m-1">등록</button>
+            <div class="form-row justify-content-center my-5">
+                <button type="button" class="btn">취소</button>
+                <button type="button" class="btn">등록</button>
             </div>
         </form>
 
     </div>
-    
-    
-    <%-- <jsp:include page="/common/footer.jsp"/> --%>
 </body>
 
 </html>

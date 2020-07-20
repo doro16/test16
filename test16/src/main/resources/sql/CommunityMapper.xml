@@ -41,7 +41,7 @@
 					<where>
 					p.user_id = u.user_id(+)
 					
-					<if test="searchCondition != null">	<!-- 검색조건이 있는경우 -->
+					<if test="searchCondition != null">	
 					<if test="searchCondition==0">
 						AND p.post_no like '%${searchKeyword}%'
 					</if>
@@ -60,10 +60,11 @@
 	
 	<select  id="getTotalCount"  parameterType="search"	 resultType="int">
 	  SELECT COUNT(*)	
-	  FROM(	SELECT  p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.reg_date
-				FROM post p, users u
+	  FROM(	SELECT p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.post_image,
+			   				p.reg_date, p.blind_code, p.view_count, p.comment_count, p.report_count, p.qna_reg_type, p.qna_code
+					FROM post p, users u
 				<where> p.user_id = u.user_id(+)
-				<if test="searchCondition != null">	<!-- 검색조건이 있는경우 -->
+				<if test="searchCondition != null">
 					<if test="searchCondition==0">
 						AND p.post_no like '%${searchKeyword}%'
 					</if>
@@ -89,7 +90,7 @@
 				SYSDATE)
 	</insert>
 
-	
+							
 	<update id="updatePost" parameterType="post" >
 		UPDATE post
 		<set>

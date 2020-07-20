@@ -15,7 +15,7 @@ public interface CommunityDAO {
 	
 	public void updatePost(Post post) throws Exception;
 	
-	public void deletePost(Post post) throws Exception;
+	public void deletePost(int postNo) throws Exception;
 	
 	// DAO에만 있음
 	public int getTotalCount(Search search) throws Exception ;

@@ -58,7 +58,7 @@ public class CommunityController {
 		
 		modelAndView.setViewName("/community/getPost.jsp");
 		modelAndView.addObject("post", post);
-		System.out.println("toString^^^" + post.toString());
+		//System.out.println("toString^^^" + post.toString());
 		
 		return modelAndView;
 	}
@@ -125,15 +125,27 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value="updatePost", method=RequestMethod.POST)
-	public ModelAndView updatePost(@ModelAttribute("post") Post post ) throws Exception {
+	public ModelAndView updatePost(@ModelAttribute("post") Post post) throws Exception {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		communityService.updatePost(post);
-		int postNo = post.getPostNo();
-		modelAndView.setViewName("/community/getPost?postNo="+postNo);
+		//int postNo = post.getPostNo();
+		modelAndView.setViewName("/community/getPost.jsp");
+		
 		return modelAndView;
 		
+	}
+	
+	@RequestMapping(value="deletePost", method=RequestMethod.GET)
+	public ModelAndView deletePost(@RequestParam("postNo") int postNo) throws Exception{
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		communityService.deletePost(postNo);
+		modelAndView.setViewName("/community/getPostList");
+		
+		return modelAndView;
 	}
 	
 	

@@ -16,7 +16,7 @@ public interface CommunityService {
 
 	public void updatePost(Post post) throws Exception;
 	
-	public void deletePost(Post post) throws Exception;
+	public void deletePost(int postNo) throws Exception;
 	
 	
 }

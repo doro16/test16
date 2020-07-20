@@ -32,7 +32,8 @@
 			alert("내용을 입력해주세요.")
 		}
 		
-		$("form").attr("method" , "POST").attr("action" , "/community/addPost").attr("enctype", "multipart/form-data").submit();
+		$("form").attr("method" , "POST").attr("action" , "/community/updatePost").attr("enctype", "multipart/form-data").submit();
+		alert("게시글이 수정되었습니다.");
 	}
 	
 	
@@ -82,13 +83,15 @@
 	<div class="container">
     <h1>게시글 수정</h1>
         <form class="form-group my-5 py-5">
+        	<input type="hidden" name="postNo" value="${post.postNo}">
             <input type="hidden" name="boardType" value="0">
             <div class="form-row my-3">
                 <div class="input-group col-lg-12">
-                    <input type="text" class="form-control" name="postName" placeholder="제목을 입력해주세요">
+                    <input type="text" class="form-control" name="postName" value="${post.postName}">
                 </div>
             </div>
-            <textarea id="summernote" name="postContent"></textarea>
+            <!--  value 속성 : 사용자가 지우고 입력해야 한다. textarea는 꺽쇠 바깥쪽에 데이터를 넣는다.-->
+            <textarea id="summernote" name="postContent">${post.postContent}</textarea>
             
             <div class="form-row d-flex justify-content-center my-5">
                 <button type="button" class="btn btn-outline-basic m-1">취소</button>
