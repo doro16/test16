@@ -8,7 +8,7 @@
     font-weight: 300;
     letter-spacing: -0.25px;
     src: url(../../../webfonts/NotoSansKR-Light.woff) format("woff");
-    src: local("â˜º"), url(../../../webfonts/NotoSansKR-Light.woff2) format("woff2")
+    src: local("창�쑣�"), url(../../../webfonts/NotoSansKR-Light.woff2) format("woff2")
 }
 
 @font-face {
@@ -16,7 +16,7 @@
     font-weight: normal;
     letter-spacing: -0.25px;
     src: url(../../../webfonts/NotoSansKR-Regular.woff) format("woff");
-    src: local("â˜º"), url(../../../webfonts/NotoSansKR-Regular.woff2) format("woff2")
+    src: local("창�쑣�"), url(../../../webfonts/NotoSansKR-Regular.woff2) format("woff2")
 }
 
 @font-face {
@@ -24,7 +24,7 @@
     font-weight: 500;
     letter-spacing: -0.25px;
     src: url(../../../webfonts/NotoSansKR-Medium.woff) format("woff");
-    src: local("â˜º"), url(../../../webfonts/NotoSansKR-Medium.woff2) format("woff2")
+    src: local("창�쑣�"), url(../../../webfonts/NotoSansKR-Medium.woff2) format("woff2")
 }
 
 @font-face {
@@ -32,13 +32,13 @@
     font-weight: 700;
     letter-spacing: -0.25px;
     src: url(../../../webfonts/NotoSansKR-Bold.woff) format("woff");
-    src: local("â˜º"), url(../../../webfonts/NotoSansKR-Bold.woff2) format("woff2")
+    src: local("창�쑣�"), url(../../../webfonts/NotoSansKR-Bold.woff2) format("woff2")
 }
 
 @font-face {
     font-family: 'roboto';
     src: url(../../../webfonts/roboto-v20-latin-700.woff) format("woff");
-    src: local("â˜º"), url(../../../webfonts/roboto-v20-latin-700.woff2) format("woff2")
+    src: local("창�쑣�"), url(../../../webfonts/roboto-v20-latin-700.woff2) format("woff2")
 }
 
 body,
@@ -156,7 +156,7 @@ button {
     font-size: 14px;
     letter-spacing: -0.25px;
     line-height: 1.5;
-    font-family: notosans, 'Apple SD Gothic Neo', 'Malgun Gothic', 'ë§‘ì€ ê³ ë”•', 'ë‹ì›€', dotum, sans-serif;
+    font-family: notosans, 'Apple SD Gothic Neo', 'Malgun Gothic', '챘짠�샖�혶�궗 챗쨀혻챘�앪��', '챘혧�뮨р�뷜궗', dotum, sans-serif;
     color: #333;
     word-break: keep-all
 }
@@ -1919,8 +1919,8 @@ body.kakao_type {
 }
 
 .content-board .list_news .thumb_img {
-    width: 200px;
-    height: 126px;
+    width: 120px;
+    /*height: 126px;*/
     vertical-align: top
 }
 

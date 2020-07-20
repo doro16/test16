@@ -19,9 +19,9 @@
 		<result property="qnaRegType"	column="qna_reg_type"	jdbcType="CHAR" />
 		<result property="qnaCode"		column="qna_code"		jdbcType="CHAR" />
 		<result property="blindCode"	column="blind_code"		jdbcType="CHAR" />
-		<result property="viewCount"	column="view_count"		jdbcType="INTEGER" />
-		<result property="commentCount" column="comment_count"  jdbcType="INTEGER" />
-		<result property="reportCount"  column="report_count"	jdbcType="INTEGER" />
+		<result property="viewCount"	column="view_count"		jdbcType="NUMERIC" />
+		<result property="commentCount" column="comment_count"  jdbcType="NUMERIC" />
+		<result property="reportCount"  column="report_count"	jdbcType="NUMERIC" />
 	
 	</resultMap>
 
@@ -78,22 +78,24 @@
 	 </select>
 	<insert id="addPost"  parameterType="post">
 		INSERT INTO
-		post(post_no, post_type, user_id, post_name, post_content, reg_date)
+		post(post_no, post_type, user_id, post_name, post_content, post_image, reg_date)
 		VALUES(  
+				seq_post_post_no.NEXTVAL,
 				#{postType:CHAR}, 
 				#{user.userId},
 				#{postName:VARCHAR}, 
 				#{postContent: VARCHAR}, 
-				SYSDATE))
+				#{postImage: VARCHAR},
+				SYSDATE)
 	</insert>
 
 	
 	<update id="updatePost" parameterType="post" >
 		UPDATE post
 		<set>
-			post_type=#{postType:CHAR},
 			post_name=#{postName:VARCHAR},
-			post_content=#{postContent:VARCHAR}
+			post_content=#{postContent:VARCHAR},
+			post_image=#{postImage:VARCHAR}
 		</set> 
 		WHERE post_no = #{postNo}
 	</update>

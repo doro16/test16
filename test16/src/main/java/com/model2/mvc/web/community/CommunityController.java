@@ -90,7 +90,25 @@ public class CommunityController {
 		
 		return modelAndView;
 	}
-						 
+	
+	@RequestMapping(value="addPost", method=RequestMethod.GET)
+	public String addPost() throws Exception {
+		return "forward:/community/addPost.jsp";
+	}
+	
+	@RequestMapping(value="addPost", method=RequestMethod.POST)
+	public ModelAndView addPost(@ModelAttribute("post") Post post, HttpSession session) throws Exception {
+		System.out.println("^^^^^^^"+ "/community/addPost");
+		
+		User user = ((User)session.getAttribute("user"));
+		post.setUser(user);
+		ModelAndView modelAndView = new ModelAndView();
+		communityService.addPost(post);
+		modelAndView.addObject("post", post);
+		modelAndView.setViewName("/community/getPostList.jsp");
+		
+		return modelAndView;
+	}					 
 	
 	
 	
