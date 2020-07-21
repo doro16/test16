@@ -59,7 +59,7 @@
 		
 		$( "td:nth-child(6) > i" ).on("click" , function() {
 			var array = $(this).text().split(",");
-			console.log("³Ä³Ä"+array);
+
 			prodName = array[0].trim();
 			prodNo = array[1].trim();
 			proTranCode = array[2].trim();

@@ -44,7 +44,7 @@
 	 
 	 function testUserList(){
 				var userId = $(this).next().val();
-			
+				
 				$.ajax( 
 						{
 							url : "/product/json/listProduct" ,

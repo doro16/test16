@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -21,7 +22,7 @@ import com.model2.mvc.service.user.UserService;
 
 
 
-@Controller
+@RestController
 @RequestMapping("/community/*")
 public class CommunityRestController {
 	
@@ -44,9 +45,9 @@ public class CommunityRestController {
 	@Value("#{commonProperties['pageSize']}")
 	//@Value("#{commonProperties['pageSize'] ?: 2}")
 	int pageSize;
-	
+
 	@RequestMapping(value="/json/getComment/{commentNo}", method=RequestMethod.GET)
-	public Comment getComment(@PathVariable int commentNo) throws Exception {
+	public Comment getComment( @PathVariable("commentNo") int commentNo) throws Exception {
 		
 		System.out.println("^^^^^^^^"+ "/community/json/getComment : GET");
 		
@@ -56,6 +57,8 @@ public class CommunityRestController {
 		// Controller는 View Page 리턴 
 		// RestController는 객체(VO,DTO) 반환하기만 하면, 객체데이터는 application/json 형식의 HTTP ResponseBody에 직접 작성됨
 	}
+	
+	
 	
 	 
 	/* 

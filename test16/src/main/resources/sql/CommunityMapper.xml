@@ -45,7 +45,7 @@
 		<result property="parentCommentNo"	column="parent_comment_no"	jdbcType="NUMERIC"	/>
 		
 		<association property="post"		javaType="post"	>
-			<result property="postNo"		column="post_no"		jdbcType="NUMERIC" />
+			<id		property="postNo"		column="post_no"		jdbcType="NUMERIC" />
 			<result property="postType" 	column="post_type"		jdbcType="CHAR" />
 			<result property="postName"		column="post_name"		jdbcType="VARCHAR" />
 			<result property="postContent"	column="post_content"	jdbcType="VARCHAR" />
