@@ -30,7 +30,8 @@
 <h3>${post.postContent}</h3>
 <h3>${post.user.userId}</h3>
 <h3>${post.regDate}</h3>
-
+<br><br>
+<jsp:include page="comment.jsp"/>
 <button type="button" class="btn btn-default">수정하기</button>
 <button type="button" class="btn btn-default">삭제하기</button>
 </body>

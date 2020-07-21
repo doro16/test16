@@ -166,7 +166,7 @@
 			<input type="text" name="receiverName" 	class="ct_input_g" 
 						style="width: 100px; height: 19px" maxLength="20" value="${user.userName}" />
 		</td>
-	</tr>
+	
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>

@@ -32,6 +32,7 @@
 		<association property="buyer"  javaType="user">
 			<id property="userId" column="buyer_id" jdbcType="VARCHAR"/>
 			<result property="userName" column="user_name" jdbcType="VARCHAR"/>
+			<result property="nickname" column="nickname" jdbcType="VARCHAR"/>
 			<result property="password" column="password" jdbcType="VARCHAR"/>
 			<result property="role" column="role" jdbcType="VARCHAR"/>
 			<result property="ssn" column="ssn" jdbcType="VARCHAR"/>
@@ -44,10 +45,11 @@
   	
 	<select id="getPurchase" parameterType="int" resultMap="purchaseSelectMap">
   		SELECT 
-		t.prod_no, t.buyer_id, t.payment_option, t.receiver_name, t.receiver_phone, t.DEMAILADDR, t.dlvy_request, t.dlvy_date, t.ORDER_DATA,                  t.tran_status_code, t.tran_no
+		*
 		from TRANSACTION t, PRODUCT p, USERS u
-		where t.prod_no = p.prod_no AND t.buyer_id = u.user_id
-		AND tran_no = #{tranNo}
+		where t.prod_no = p.prod_no 
+		  AND t.buyer_id = u.user_id
+		  AND tran_no = #{tranNo}
   	</select>
   	
 	<insert id="addPurchase" parameterType="purchase">

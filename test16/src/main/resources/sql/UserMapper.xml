@@ -10,6 +10,7 @@
 	<resultMap id="userSelectMap" type="user">
 		<result property="userId" 			column="user_id" 			jdbcType="VARCHAR"/>
 		<result property="userName"	column="user_name" 		jdbcType="VARCHAR" />
+		<result property="nickname"	column="nickname" 		jdbcType="VARCHAR" />
 		<result property="password" 	column="password" 		jdbcType="VARCHAR" />
 		<result property="role" 				column="role" 					jdbcType="VARCHAR" />
 		<result property="ssn" 				column="ssn" 					jdbcType="VARCHAR" />
@@ -22,15 +23,15 @@
 	<!-- SQL : INSERT -->
 	<insert 	id="addUser"		parameterType="user" >
 	 	INSERT
-		INTO users( user_id , user_name , password , role , ssn, cell_phone, addr, email , reg_date) 
-		VALUES	 (	#{userId} , #{userName} , #{password} , 'user' , #{ssn:VARCHAR} , 
+		INTO users( user_id , user_name , nickname, password , role , ssn, cell_phone, addr, email , reg_date) 
+		VALUES	 (	#{userId} , #{userName} , #{nickname}, #{password} , 'user' , #{ssn:VARCHAR} , 
 							#{phone:VARCHAR} , #{addr:VARCHAR} , #{email:VARCHAR} , SYSDATE )
 	 </insert>
 	 
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getUser"	parameterType="string"	resultMap="userSelectMap">
 		SELECT
-		user_id , user_name , password , role ,  cell_phone ,  addr , email , reg_date 		
+		user_id , user_name , nickname, password , role ,  cell_phone ,  addr , email , reg_date 		
 		FROM users 
 		WHERE user_id = #{value}
 	 </select>

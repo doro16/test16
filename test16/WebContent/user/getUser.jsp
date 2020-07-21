@@ -101,6 +101,10 @@
 			<div class="col-xs-8 col-md-4">${user.regDate}</div>
 		</div>
 		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>´Ğ³×ÀÓ</strong></div>
+			<div class="col-xs-8 col-md-4">${user.nickname}</div>
+		</div>
 		<hr/>
 		
 		<div class="row">

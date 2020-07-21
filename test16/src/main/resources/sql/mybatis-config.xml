@@ -18,6 +18,7 @@
 		<typeAlias alias="product" type="com.model2.mvc.service.domain.Product" />
 		<typeAlias alias="purchase" type="com.model2.mvc.service.domain.Purchase" />
 		<typeAlias alias="post" type="com.model2.mvc.service.domain.Post" />
+		<typeAlias alias="comment" type="com.model2.mvc.service.domain.Comment" />
 		<typeAlias alias="search" type="com.model2.mvc.common.Search" />
 	</typeAliases>
 	

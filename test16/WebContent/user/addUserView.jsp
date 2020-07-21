@@ -203,7 +203,7 @@
 		      </span>
 		    </div>
 		    <div class="col-sm-3">
-		      <button type="button" class="btn btn-info">중복확인</button>
+		      <button type="button" class="btn btn-info">중복확인</button>s
 		    </div>
 		  </div>
 		  <!-- https://hongku.tistory.com/249  -->

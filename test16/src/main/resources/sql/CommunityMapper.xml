@@ -6,12 +6,10 @@
 		
 <mapper namespace="CommunityMapper">
 	
-	<resultMap id="postSelectMap" type="post">
+	<resultMap id="postSelectMap" 		type="post">
 		
-		<result property="postNo"		column="post_no"		jdbcType="INTEGER" />
+		<result property="postNo"		column="post_no"		jdbcType="NUMERIC" />
 		<result property="postType" 	column="post_type"		jdbcType="CHAR" />
-		<result property="user.userId"	column="user_id"		jdbcType="VARCHAR" />
-		
 		<result property="postName"		column="post_name"		jdbcType="VARCHAR" />
 		<result property="postContent"	column="post_content"	jdbcType="VARCHAR" />
 		<result property="postImage"	column="post_image"		jdbcType="VARCHAR" />
@@ -23,11 +21,73 @@
 		<result property="commentCount" column="comment_count"  jdbcType="NUMERIC" />
 		<result property="reportCount"  column="report_count"	jdbcType="NUMERIC" />
 	
+		<association property="user"  	javaType="user">
+			<id 	property="userId" 	column="user_id" 	jdbcType="VARCHAR"/>
+			<result property="userName" column="user_name" 	jdbcType="VARCHAR"/>
+			<result property="nickname" column="nickname" 	jdbcType="VARCHAR"/>
+			<result property="password" column="password" 	jdbcType="VARCHAR"/>
+			<result property="role" 	column="role" 		jdbcType="VARCHAR"/>
+			<result property="ssn" 		column="ssn" 		jdbcType="VARCHAR"/>
+			<result property="phone" 	column="cell_phone" jdbcType="VARCHAR"/>
+			<result property="addr" 	column="addr" 		jdbcType="VARCHAR"/>
+			<result property="email" 	column="email" 		jdbcType="VARCHAR"/>
+			<result property="regDate" 	column="reg_date" 	jdbcType="DATE"/>
+		</association>
 	</resultMap>
 
+
+	<resultMap id="commentSelectMap" 		type="comment">
+	
+		<result property="commentNo"		column="comment_no"			jdbcType="NUMERIC"	/>
+		<result property="commentContent"	column="comment_content"	jdbcType="VARCHAR"	/>
+		<result property="commentImage"		column="comment_image"		jdbcType="VARCHAR"	/>
+		<result property="regDate"			column="regDate"			jdbcType="DATE"		/>	
+		<result property="parentCommentNo"	column="parent_comment_no"	jdbcType="NUMERIC"	/>
+		
+		<association property="post"		javaType="post"	>
+			<result property="postNo"		column="post_no"		jdbcType="NUMERIC" />
+			<result property="postType" 	column="post_type"		jdbcType="CHAR" />
+			<result property="postName"		column="post_name"		jdbcType="VARCHAR" />
+			<result property="postContent"	column="post_content"	jdbcType="VARCHAR" />
+			<result property="postImage"	column="post_image"		jdbcType="VARCHAR" />
+			<result property="regDate" 		column="reg_date" 		jdbcType="DATE" />
+			<result property="qnaRegType"	column="qna_reg_type"	jdbcType="CHAR" />
+			<result property="qnaCode"		column="qna_code"		jdbcType="CHAR" />
+			<result property="blindCode"	column="blind_code"		jdbcType="CHAR" />
+			<result property="viewCount"	column="view_count"		jdbcType="NUMERIC" />
+			<result property="commentCount" column="comment_count"  jdbcType="NUMERIC" />
+			<result property="reportCount"  column="report_count"	jdbcType="NUMERIC" />
+		</association>
+		
+		<association property="user"  	javaType="user">
+			<id 	property="userId" 	column="user_id" 	jdbcType="VARCHAR"/>
+			<result property="userName" column="user_name" 	jdbcType="VARCHAR"/>
+			<result property="nickname" column="nickname" 	jdbcType="VARCHAR"/>
+			<result property="password" column="password" 	jdbcType="VARCHAR"/>
+			<result property="role" 	column="role" 		jdbcType="VARCHAR"/>
+			<result property="ssn" 		column="ssn" 		jdbcType="VARCHAR"/>
+			<result property="phone" 	column="cell_phone" jdbcType="VARCHAR"/>
+			<result property="addr" 	column="addr" 		jdbcType="VARCHAR"/>
+			<result property="email" 	column="email" 		jdbcType="VARCHAR"/>
+			<result property="regDate" 	column="reg_date" 	jdbcType="DATE"/>
+		</association>
+		
+		
+	</resultMap>
+
+	<select id="getComment" parameterType="int" resultMap="commentSelectMap" >
+		SELECT *
+		FROM COMMENT2 c, users u, post p
+		WHERE c.user_id = u.user_id 
+		AND c.post_no = p.post_no
+		AND c.comment_no = #{commentNo}
+	</select>
+	
+	
+	
+
 	<select id="getPost" parameterType="int" resultMap="postSelectMap" >
-		SELECT p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.post_image,
-			   p.reg_date, p.blind_code, p.view_count, p.comment_count, p.report_count, p.qna_reg_type, p.qna_code
+		SELECT *
 		FROM post p, users u
 		WHERE p.user_id = u.user_id AND p.post_no = #{postNo}
 	</select>
@@ -58,7 +118,7 @@
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	</select>
 	
-	<select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	<select  id="getPostTotalCount"  parameterType="search"	 resultType="int">
 	  SELECT COUNT(*)	
 	  FROM(	SELECT p.post_no, p.post_type, u.user_id, p.post_name, p.post_content, p.post_image,
 			   				p.reg_date, p.blind_code, p.view_count, p.comment_count, p.report_count, p.qna_reg_type, p.qna_code
@@ -83,7 +143,7 @@
 		VALUES(  
 				seq_post_post_no.NEXTVAL,
 				#{postType:CHAR}, 
-				#{user.userId},
+				#{user.userId:VARCHAR},
 				#{postName:VARCHAR}, 
 				#{postContent: VARCHAR}, 
 				#{postImage: VARCHAR},

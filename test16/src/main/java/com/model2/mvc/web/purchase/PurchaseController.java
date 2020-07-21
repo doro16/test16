@@ -89,7 +89,8 @@ public class PurchaseController {
 		
 		//purchase.setManuDate(product.getManuDate().replace("-", ""));
 		User user = new User();
-		user.setUserId(buyerId);
+		user = userService.getUser(buyerId);
+	
 		Product product = new Product();
 		//product.setProdNo(prodNo);
 		product = productService.getProduct(prodNo);
@@ -116,7 +117,7 @@ public class PurchaseController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		Purchase purchase = purchaseService.getPurchase(tranNo);
-		
+		System.out.println("^^^^^purchase"+ purchase.toString());
 		modelAndView.setViewName("/purchase/getPurchase.jsp");
 		modelAndView.addObject("purchase", purchase);
 		

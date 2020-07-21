@@ -9,6 +9,7 @@ public class Comment {
 	private String commentContent;
 	private String commentImage;
 	private Date regDate;
+	private int parentCommentNo;
 	
 	private User user;
 	private Post post;
@@ -59,7 +60,17 @@ public class Comment {
 		this.regDate = regDate;
 	}
 
-
+	
+	public int getParentCommentNo() {
+		return parentCommentNo;
+	}
+	
+	
+	public void setParentCommentNo(int parentCommentNo) {
+		this.parentCommentNo = parentCommentNo;
+	}
+	
+	
 	public User getUser() {
 		return user;
 	}

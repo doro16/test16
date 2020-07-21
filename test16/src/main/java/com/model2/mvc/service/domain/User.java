@@ -21,7 +21,8 @@ public class User {
 	private String phone2;
 	private String phone3;
 
-	
+	//Ãß°¡
+	private String nickname;
 	
 	///Constructor
 	public User(){
@@ -118,6 +119,14 @@ public class User {
 
 	public void setPhone3(String phone3) {
 		this.phone3 = phone3;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////
 }
