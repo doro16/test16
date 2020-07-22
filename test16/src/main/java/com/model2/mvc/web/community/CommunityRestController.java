@@ -1,12 +1,15 @@
 package com.model2.mvc.web.community;
 
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.model2.mvc.service.community.CommunityService;
 import com.model2.mvc.service.domain.Comment;
-
+import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.user.UserService;
 
 
@@ -58,7 +61,27 @@ public class CommunityRestController {
 		// RestController는 객체(VO,DTO) 반환하기만 하면, 객체데이터는 application/json 형식의 HTTP ResponseBody에 직접 작성됨
 	}
 	
+	@RequestMapping(value="/json/getCommentList/{postNo}", method=RequestMethod.GET)
+	public Map<String, Object> getCommentList( @PathVariable("postNo") int postNo) throws Exception {
+		
+		System.out.println("^^^^^^^^"+ "/community/json/getCommentList : GET");
+		
+		Map<String, Object> map = communityService.getCommentList(postNo);
+		
+		map.put("list", map.get("list"));
+		return map;
+		// Controller는 View Page 리턴 
+		// RestController는 객체(VO,DTO) 반환하기만 하면, 객체데이터는 application/json 형식의 HTTP ResponseBody에 직접 작성됨
+	}
 	
+	@RequestMapping(value="/json/addComment", method=RequestMethod.POST)
+	public void addComment(@ModelAttribute Comment comment, HttpSession session) throws Exception{
+		User user = ((User)session.getAttribute("user"));
+		comment.setUser(user);
+		communityService.addComment(comment);
+		
+		
+	}
 	
 	 
 	/* 

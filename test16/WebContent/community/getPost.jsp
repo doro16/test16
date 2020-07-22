@@ -1,78 +1,60 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="com.model2.mvc.service.domain.*" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="ko">
 <head>
-<meta charset="EUC-KR">
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$("button:contains('¼öÁ¤')").on("click", function(){
-			self.location = "/community/updatePost?postNo=${post.postNo}"
-		})	
-		
-		$("button:contains('»èÁ¦')").on("click", function(){
-			self.location = "/community/deletePost?postNo=${post.postNo}"
-			alert("°Ô½Ã±ÛÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
-		})
-		
-		$("button:contains('¸ñ·Ï')").on("click", function(){
-			self.location = "/community/getPostList"
-		})
-		
-	});
-	
-	 $(function() { 
-		 fncGetCommentList();		
-	 });	
-	 
-	function fncGetCommentList(){
-		alert("³Ä³Ä");
-		$.ajax(
-		    	{
-		        url : "/community/json/getComment/"+10000,
-		        method : "GET" ,
-				dataType : "json" ,
-				headers : {
-					"Accept" : "application/json",
-					"Content-Type" : "application/json"
-				},
-				success : function(JSONData , status) {
-							alert("¸Û"+JSONData);
-							var displayValue = "";
-							displayValue += "<h6>"
-								+"´ñ±Û¹øÈ£: " + JSONData.commentNo + "<br/>"
-								+"´ñ±Û³»¿ë: " + JSONData.commentContent + "<br/>"
-								+"</h6>";
-						   
-				
-				$( "#hh" ).html(displayValue);
-				}
-				
-		    	});
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	
-		            
+  	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-		            	
+	<script type="text/javascript">
+		$(function() {
+			$("button:contains('ìˆ˜ì •')").on("click", function(){
+				self.location = "/community/updatePost?postNo=${post.postNo}"
+			})	
+			
+			$("button:contains('ì‚­ì œ')").on("click", function(){
+				self.location = "/community/deletePost?postNo=${post.postNo}"
+				alert("ê²Œì‹œê¸€ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+			})
+			
+			$("button:contains('ëª©ë¡')").on("click", function(){
+				self.location = "/community/getPostList"
+			})
+			
+		});
 	
-
-</script>
+	
+	</script>
 </head>
 <body>
-<input type="hidden" value="${post.postNo}" />
+<form>
+<input type="hidden" id="postNo" name="postNo" value="${post.postNo}"/>
+</form>
 
 <h3>${post.postName}</h3>
 <h3>${post.postContent}</h3>
 <h3>${post.user.userId}</h3>
 <h3>${post.regDate}</h3>
 <br><br>
-<div class="row" id="hh">
-<button type="button" class="btn btn-default">¼öÁ¤ÇÏ±â</button>
-<button type="button" class="btn btn-default">»èÁ¦ÇÏ±â</button>
-<button type="button" class="btn btn-default">¸ñ·ÏÀ¸·Î</button>
+<jsp:include page="comment.jsp"></jsp:include>
+<div class="row" id="hh"></div> 
+<div class="container">
+<button type="button" class="btn btn-outline-info">ìˆ˜ì •í•˜ê¸°</button>&nbsp;&nbsp;&nbsp;
+<button type="button" class="btn btn-outline-info">ì‚­ì œí•˜ê¸°</button>
+<button type="button" class="btn btn-info" style="float: right;">ëª©ë¡ìœ¼ë¡œ</button>
+</div>
 </body>
 </html>

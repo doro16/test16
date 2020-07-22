@@ -65,7 +65,7 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	public Map<String, Object> getCommentList(int postNo) throws Exception {
 		List<Comment> list = communityDAO.getCommentList(postNo);
-		int totalCount = communityDAO.getCommentTotalCount(postNo);	// 쓰려면 search필요한가...	
+		int totalCount = communityDAO.getCommentTotalCount(postNo);		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);

@@ -56,7 +56,7 @@
 							},
 							success : function(JSONData , status) {
 								//alert("Server에서 받은 내용 : \n"+"아이디 : "+JSON.stringify(JSONData.list[0])+"<br/>");
-								//console.log("Server에서 받은 내용 : \n"+"아이디 : "+JSON.stringify(JSONData.list[0])+"<br/>");
+								//console.log("Server에서 받은 내용 : \n"+"아이디 : "+JSON.``(JSONData.list[0])+"<br/>");
 								
 								
 								 
