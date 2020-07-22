@@ -46,7 +46,7 @@ public class CommunityController {
 	//@Value("#{commonProperties['pageSize'] ?: 2}")
 	int pageSize;
 	
-	@RequestMapping(value="getPost", method=RequestMethod.GET)
+	@RequestMapping(value="getPost", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getPost(@RequestParam("postNo") int postNo) throws Exception {
 		
 		System.out.println("^^^^^^^^"+ "/community/getPost : GET");

@@ -3,6 +3,8 @@ package com.model2.mvc.web.community;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,12 +77,12 @@ public class CommunityRestController {
 	}
 	
 	@RequestMapping(value="/json/addComment", method=RequestMethod.POST)
-	public void addComment(@ModelAttribute Comment comment, HttpSession session) throws Exception{
+	public void addComment(@ModelAttribute Comment comment, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println("^^^^^^^^"+ "/community/json/addComment : POST");
 		User user = ((User)session.getAttribute("user"));
 		comment.setUser(user);
 		communityService.addComment(comment);
-		
-		
+			
 	}
 	
 	 

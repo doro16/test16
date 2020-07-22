@@ -61,25 +61,29 @@
 		}
 		
 		$(function() { 
-			$("#addComent").on("click", function(){
-				//var userId = $("input[name='userId']").val();
-				var content = $("textarea[id='commentContent']").val();
-				alert(userId + content);
+			$("#addComment").on("click", function(){
+				var postNo = 
+    			var commentContent = $('#commentContent').val();
+    			alert(postNo + commentContent);
 				$.ajax(
 				    	{  		 	
 				        url : "/community/json/addComment",
 				        method : "POST" ,
 						dataType : "json" ,
-						data: JSON.stringify({
-							commentContent: commentContent
-						}), // 전송할 데이터
+						//data : $('#addCommentForm').serialize() ,
+						data : JSON.stringify({
+	    					"postNo" : postNo,
+	    					"commentContent" : commentContent
+	    				}),
 						headers : {
 							"Accept" : "application/json",
 							"Content-Type" : "application/json"
 						},
 						success : function(JSONData , status) {
+									alert("댓등록성공");
 									alert(JSON.stringify(JSONData.list[0]));
 									alert(JSONdata.commentContent);	
+									
 						}
 						
 				    	});
@@ -94,13 +98,14 @@
 
 
 <body>
-  <form method="POST"  >
-	
+  <form name="addCommentForm" id="addCommentForm">
+	<input type="hidden" id="postNo" name="postNo" value="${post.postNo}"/>
 	<div class="container">
 	        <div class="border-bottom mt-2 mb-4 py-4">
 	            <div class="form-row d-flex justify-content-center">
 	                <textarea class="form-control col-9 col-md-10 mr-1" id="commentContent" name="commentContent" rows="3" maxlength="500"></textarea>
 	                <button class="col-2 col-md-1 btn btn-basic" id="addComment">등록</button>
+	                
 	                
 	            </div>
 	            <span class="m-3 m-md-5"><strong class="text-danger" id="counter">0</strong> / 500자</span>

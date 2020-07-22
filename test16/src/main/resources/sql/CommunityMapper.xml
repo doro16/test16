@@ -110,6 +110,23 @@
 	        ORDER BY c.comment_no
  		) count_table
  	</select>
+ 	
+
+	
+	<insert id="addComment"	parameterType="comment">
+		INSERT INTO
+		COMMENT2(comment_no, POST_NO, user_id, comment_content, comment_image, reg_date, parent_comment_no)
+		VALUES(
+				seq_comment2_comment_no.nextval,
+				#{post.postNo:NUMERIC},
+				#{user.userId:VARCHAR},
+				#{commentContent:VARCHAR},
+				#{commentImage:VARCHAR},
+				SYSDATE,
+				#{parentCommentNo:NUMERIC}	
+				)
+	
+	</insert>
 	
 	
 	

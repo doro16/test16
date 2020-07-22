@@ -42,6 +42,7 @@
 <body>
 <form>
 <input type="hidden" id="postNo" name="postNo" value="${post.postNo}"/>
+<input type="hidden" id="userId" name="userId" value="${post.user.userId}"/>
 </form>
 
 <h3>${post.postName}</h3>
