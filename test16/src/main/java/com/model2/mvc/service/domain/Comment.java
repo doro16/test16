@@ -9,10 +9,10 @@ public class Comment {
 	private String commentContent;
 	private String commentImage;
 	private Date regDate;
-	private int parentCommentNo;
+	private Integer parentCommentNo;
 	
 	private User user;
-	private Post post;
+	private int postNo;
 	
 	
 	/// Constructor
@@ -61,12 +61,12 @@ public class Comment {
 	}
 
 	
-	public int getParentCommentNo() {
+	public Integer getParentCommentNo() {
 		return parentCommentNo;
 	}
 	
 	
-	public void setParentCommentNo(int parentCommentNo) {
+	public void setParentCommentNo(Integer parentCommentNo) {
 		this.parentCommentNo = parentCommentNo;
 	}
 	
@@ -81,15 +81,17 @@ public class Comment {
 	}
 
 
-	public Post getPost() {
-		return post;
+	public int getPostNo() {
+		return postNo;
 	}
 
 
-	public void setPost(Post post) {
-		this.post = post;
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
-	
+
+
+		
 	
 
 }

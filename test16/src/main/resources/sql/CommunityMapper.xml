@@ -43,21 +43,8 @@
 		<result property="commentImage"		column="comment_image"		jdbcType="VARCHAR"	/>
 		<result property="regDate"			column="regDate"			jdbcType="DATE"		/>	
 		<result property="parentCommentNo"	column="parent_comment_no"	jdbcType="NUMERIC"	/>
-		
-		<association property="post"		javaType="post"	>
-			<id		property="postNo"		column="post_no"		jdbcType="NUMERIC" />
-			<result property="postType" 	column="post_type"		jdbcType="CHAR" />
-			<result property="postName"		column="post_name"		jdbcType="VARCHAR" />
-			<result property="postContent"	column="post_content"	jdbcType="VARCHAR" />
-			<result property="postImage"	column="post_image"		jdbcType="VARCHAR" />
-			<result property="regDate" 		column="reg_date" 		jdbcType="DATE" />
-			<result property="qnaRegType"	column="qna_reg_type"	jdbcType="CHAR" />
-			<result property="qnaCode"		column="qna_code"		jdbcType="CHAR" />
-			<result property="blindCode"	column="blind_code"		jdbcType="CHAR" />
-			<result property="viewCount"	column="view_count"		jdbcType="NUMERIC" />
-			<result property="commentCount" column="comment_count"  jdbcType="NUMERIC" />
-			<result property="reportCount"  column="report_count"	jdbcType="NUMERIC" />
-		</association>
+		<result property="postNo"			column="post_no"	jdbcType="NUMERIC"	/>
+	
 		
 		<association property="user"  	javaType="user">
 			<id 	property="userId" 	column="user_id" 	jdbcType="VARCHAR"/>
@@ -110,34 +97,32 @@
 	        ORDER BY c.comment_no
  		) count_table
  	</select>
- 	
-
 	
 	<insert id="addComment"	parameterType="comment">
 		INSERT INTO
 		COMMENT2(comment_no, POST_NO, user_id, comment_content, comment_image, reg_date, parent_comment_no)
 		VALUES(
 				seq_comment2_comment_no.nextval,
-				#{post.postNo:NUMERIC},
+				#{postNo:NUMERIC},
 				#{user.userId:VARCHAR},
 				#{commentContent:VARCHAR},
 				#{commentImage:VARCHAR},
 				SYSDATE,
 				#{parentCommentNo:NUMERIC}	
 				)
-	
 	</insert>
+
+	<update id="updateComment"	parameterType="comment">
+		UPDATE COMMENT2
+		SET comment_content=#{commentContent:VARCHAR}
+		WHERE comment_no = #{commentNo}
+	</update>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<delete id="deleteComment" parameterType="int" >
+		DELETE
+		FROM COMMENT2
+		WHERE comment_no = #{commentNo}
+	</delete>
 
 	<select id="getPost" parameterType="int" resultMap="postSelectMap" >
 		SELECT *

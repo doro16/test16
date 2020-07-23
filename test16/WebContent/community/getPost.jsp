@@ -50,12 +50,14 @@
 <h3>${post.user.userId}</h3>
 <h3>${post.regDate}</h3>
 <br><br>
-<jsp:include page="comment.jsp"></jsp:include>
-<div class="row" id="hh"></div> 
+
+
 <div class="container">
 <button type="button" class="btn btn-outline-info">수정하기</button>&nbsp;&nbsp;&nbsp;
 <button type="button" class="btn btn-outline-info">삭제하기</button>
 <button type="button" class="btn btn-info" style="float: right;">목록으로</button>
+<jsp:include page="comment.jsp"></jsp:include>
+<div class="border-bottom mt-2 mb-4 py-4" id="hh"></div> 
 </div>
 </body>
 </html>

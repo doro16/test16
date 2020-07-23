@@ -43,10 +43,12 @@
 								
 								var displayValue = "";
 								for(i=0; i < JSONData.list.length; i++){
-									displayValue += "<h6> &nbsp;&nbsp;&nbsp;&nbsp;"
-										+"댓글번호: " + JSONData.list[i].commentNo + "<br/>&nbsp;&nbsp;&nbsp;&nbsp;"
-										+"댓글내용: " + JSONData.list[i].commentContent + "<br/>"
-										+"</h6>";	
+									displayValue += "<h6>"
+										+"<input type='hidden' class='commentNo' value=" + JSONData.list[i].commentNo + ">"
+										+"<h6 style='color:blue;'>" + JSONData.list[i].user.userId + "</h6>"
+										+"<h6>" + JSONData.list[i].commentContent + "</h6>" 
+										+"<p style='float:left; font-size: small;'>수정</p>"
+										+"<p style='font-size: small;'>삭제</p>";	
 								}
 								
 								
@@ -62,7 +64,7 @@
 		
 		$(function() { 
 			$("#addComment").on("click", function(){
-				var postNo = 
+				var postNo = parseInt($("input[name='postNo']").val());
     			var commentContent = $('#commentContent').val();
     			alert(postNo + commentContent);
 				$.ajax(
@@ -70,7 +72,7 @@
 				        url : "/community/json/addComment",
 				        method : "POST" ,
 						dataType : "json" ,
-						//data : $('#addCommentForm').serialize() ,
+						
 						data : JSON.stringify({
 	    					"postNo" : postNo,
 	    					"commentContent" : commentContent
@@ -106,12 +108,13 @@
 	                <textarea class="form-control col-9 col-md-10 mr-1" id="commentContent" name="commentContent" rows="3" maxlength="500"></textarea>
 	                <button class="col-2 col-md-1 btn btn-basic" id="addComment">등록</button>
 	                
-	                
+	         
 	            </div>
 	            <span class="m-3 m-md-5"><strong class="text-danger" id="counter">0</strong> / 500자</span>
 	        </div>
 	</div>
   </form>
+  
 </body>
 
 </html>
