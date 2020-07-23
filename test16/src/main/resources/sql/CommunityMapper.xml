@@ -25,6 +25,7 @@
 			<id 	property="userId" 	column="user_id" 	jdbcType="VARCHAR"/>
 			<result property="userName" column="user_name" 	jdbcType="VARCHAR"/>
 			<result property="nickname" column="nickname" 	jdbcType="VARCHAR"/>
+			<result property="profile"	column="profile" 	jdbcType="VARCHAR" />
 			<result property="password" column="password" 	jdbcType="VARCHAR"/>
 			<result property="role" 	column="role" 		jdbcType="VARCHAR"/>
 			<result property="ssn" 		column="ssn" 		jdbcType="VARCHAR"/>
@@ -50,6 +51,7 @@
 			<id 	property="userId" 	column="user_id" 	jdbcType="VARCHAR"/>
 			<result property="userName" column="user_name" 	jdbcType="VARCHAR"/>
 			<result property="nickname" column="nickname" 	jdbcType="VARCHAR"/>
+			<result property="profile"	column="profile" 	jdbcType="VARCHAR" />
 			<result property="password" column="password" 	jdbcType="VARCHAR"/>
 			<result property="role" 	column="role" 		jdbcType="VARCHAR"/>
 			<result property="ssn" 		column="ssn" 		jdbcType="VARCHAR"/>
@@ -75,7 +77,7 @@
 		FROM (
 		    SELECT inner_table.*
 		    FROM (
-		        SELECT p.post_no, u.user_id, u.nickname, c.comment_no, c.comment_content, c.reg_date
+		        SELECT p.post_no, u.user_id, u.nickname, u.profile, c.comment_no, c.comment_content, c.REG_DATE
 		        FROM COMMENT2 c, users u, post p
 		        WHERE c.user_id = u.user_id 
 		        	  AND c.post_no = p.post_no
@@ -89,7 +91,7 @@
  	<select id="getCommentTotalCount" parameterType="int" resultType="int">
  		SELECT COUNT(*)
  		FROM (
- 			SELECT p.post_no, u.user_id, u.nickname, c.comment_no, c.comment_content, c.reg_date
+ 			SELECT p.post_no, u.user_id, u.nickname, u.profile, c.comment_no, c.comment_content, c.REG_DATE
 	        FROM COMMENT2 c, users u, post p
 	        WHERE c.user_id = u.user_id 
 	        	  AND c.post_no = p.post_no

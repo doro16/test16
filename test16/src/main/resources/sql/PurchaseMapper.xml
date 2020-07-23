@@ -33,6 +33,7 @@
 			<id property="userId" column="buyer_id" jdbcType="VARCHAR"/>
 			<result property="userName" column="user_name" jdbcType="VARCHAR"/>
 			<result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+			<result property="profile"	column="profile" 		jdbcType="VARCHAR" />
 			<result property="password" column="password" jdbcType="VARCHAR"/>
 			<result property="role" column="role" jdbcType="VARCHAR"/>
 			<result property="ssn" column="ssn" jdbcType="VARCHAR"/>

@@ -45,10 +45,13 @@
 								for(i=0; i < JSONData.list.length; i++){
 									displayValue += "<h6>"
 										+"<input type='hidden' class='commentNo' value=" + JSONData.list[i].commentNo + ">"
-										+"<h6 style='color:blue;'>" + JSONData.list[i].user.userId + "</h6>"
+										
+										
+										+ "<img src='../images/uploadFiles/"+JSONData.list[i].user.profile+"'  alt='프로필사진' style='height: 55px; width: 55px; float: left; margin-right: 10px; margin-bottom: 10px;'>"
+										+"<p style='color:blue;'>" +JSONData.list[i].user.nickname + "</p>"
 										+"<h6>" + JSONData.list[i].commentContent + "</h6>" 
-										+"<p style='float:left; font-size: small;'>수정</p>"
-										+"<p style='font-size: small;'>삭제</p>";	
+										+"<p style='float:left; font-size: small;'>수정 </p>"
+										+"<p style='font-size: small;'>&nbsp삭제</p>";	
 								}
 								
 								
@@ -66,7 +69,7 @@
 			$("#addComment").on("click", function(){
 				var postNo = parseInt($("input[name='postNo']").val());
     			var commentContent = $('#commentContent').val();
-    			alert(postNo + commentContent);
+    			//alert(postNo + commentContent);
 				$.ajax(
 				    	{  		 	
 				        url : "/community/json/addComment",
@@ -82,7 +85,7 @@
 							"Content-Type" : "application/json"
 						},
 						success : function(JSONData , status) {
-									alert("댓등록성공");
+									//alert("댓등록성공");
 									alert(JSON.stringify(JSONData.list[0]));
 									alert(JSONdata.commentContent);	
 									
@@ -106,11 +109,11 @@
 	        <div class="border-bottom mt-2 mb-4 py-4">
 	            <div class="form-row d-flex justify-content-center">
 	                <textarea class="form-control col-9 col-md-10 mr-1" id="commentContent" name="commentContent" rows="3" maxlength="500"></textarea>
-	                <button class="col-2 col-md-1 btn btn-basic" id="addComment">등록</button>
+	                <button class="col-2 col-md-1 btn btn-outline-info" id="addComment">등록</button>
 	                
 	         
 	            </div>
-	            <span class="m-3 m-md-5"><strong class="text-danger" id="counter">0</strong> / 500자</span>
+	           
 	        </div>
 	</div>
   </form>

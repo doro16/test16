@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,7 +60,8 @@ public class CommunityRestController {
 		System.out.println("^^^^^^^^"+ "/community/json/getComment : GET");
 		
 		Comment comment = communityService.getComment(commentNo);
-		
+		//User user = comment.getUser();
+		//comment.setUser(user);
 		return comment;
 		// Controller는 View Page 리턴 
 		// RestController는 객체(VO,DTO) 반환하기만 하면, 객체데이터는 application/json 형식의 HTTP ResponseBody에 직접 작성됨
@@ -71,7 +74,18 @@ public class CommunityRestController {
 		
 		Map<String, Object> map = communityService.getCommentList(postNo);
 		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonManyValue = objectMapper.writeValueAsString(map.get("list"));
+		
+		List<Comment> list =  objectMapper.readValue(jsonManyValue, new TypeReference<List<Comment>>() {});
+		
+		for (int i=0; i<list.size(); i++) {
+			Comment str = list.get(i);
+			System.out.println("000"+str.getUser().getNickname());
+		}
+
 		map.put("list", map.get("list"));
+		
 		return map;
 	}
 	

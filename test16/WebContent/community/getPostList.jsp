@@ -7,8 +7,7 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>리브리베로</title>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -54,13 +53,11 @@
         
         <main class="doc-main">
             	
-            	<div class="col-md-6 text-left">
-				    	<p class="text-primary">
-				    		전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
-				    	</p>
-				    </div>
-				    <div class="col-md-6 text-right">
-				    <form class="form-inline" name="detailForm">
+        
+				
+                <article id="mainContent" class="content-article content-board">
+                    
+				    <form class="form-inline text-right">
 				    
 					  <div class="form-group">
 					    <select class="form-control" name="searchCondition" >
@@ -77,22 +74,19 @@
 					  </div>
 					  
 					  <button type="button" class="btn btn-default">검색</button>
-					  
+					  <button type="button" class="btn btn-info" onclick="location.href='/community/addPost' ">글쓰기</button>
 					  <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
 					  <input type="hidden" id="currentPage" name="currentPage" value=""/>
 					  
 					</form>
-	    			</div>
-            	
-                <article id="mainContent" class="content-article content-board">
-                    
-                   	
+					
+	    			<p style="float:left"> 전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지 </p>
 				    
                     <div class="warp_board">
                         <ul class="list_news">
                             <!-- 변수 지정하기  -->
 							<c:set var="i" value="0" />
-							<c:forEach var="post" items="${list}"> <!-- 너가 모델에 넣었잖아.. -->
+							<c:forEach var="post" items="${list}"> 
                             <c:set var="i" value="${ i+1 }" />
                             
                             <li>
@@ -114,7 +108,7 @@
                 </article>
             </section>
         </main>
-        <button type="button" class="btn btn-default" onclick="location.href='/community/addPost' ">글쓰기</button>
+        
         <div class="dimmed_layer" style="display:none"></div>
         
     </div>

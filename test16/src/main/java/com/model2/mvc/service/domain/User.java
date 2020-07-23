@@ -10,6 +10,7 @@ public class User {
 	private String userId;
 	private String userName;
 	private String password;
+	private String profile;
 	private String role;
 	private String ssn;
 	private String phone;
@@ -47,6 +48,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}	
 	public String getRole() {
 		return role;
 	}

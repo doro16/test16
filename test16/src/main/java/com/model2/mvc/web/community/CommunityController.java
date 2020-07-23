@@ -106,7 +106,7 @@ public class CommunityController {
 		ModelAndView modelAndView = new ModelAndView();
 		communityService.addPost(post);
 		modelAndView.addObject("post", post);
-		modelAndView.setViewName("/community/getPost.jsp");
+		modelAndView.setViewName("/community/getPostList");
 		
 		return modelAndView;
 	}					 
