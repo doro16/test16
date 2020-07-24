@@ -37,12 +37,7 @@
 			$("form").attr("method", "POST").attr("action", "/community/getPostList").submit();	
 		}   
 	    
-		// $(function() {
-		//  	 $("button.btn btn-default").on("click", function(){
-		//   		alert("뭐냐고");
-		//			self.location = "/community/addPost";
-		//		}); 
-		//    });
+
         
     </script>
 </head>

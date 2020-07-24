@@ -100,6 +100,13 @@ public class CommunityRestController {
 			
 	}
 	
+	@RequestMapping(value="/json/updateComment/{commentNo}", method=RequestMethod.GET)
+	public Comment updateComment(@PathVariable("commentNo") int commentNo) throws Exception{
+		System.out.println("^^^^^^^^"+ "/community/json/updateComment 할 거 가져오자");
+		Comment comment = communityService.getComment(commentNo);
+		
+		return comment;
+	}
 	
 	@RequestMapping(value="/json/updateComment", method=RequestMethod.POST)
 	public void updateComment(@RequestBody Map<String, Object> map2, HttpSession session, Comment comment) throws Exception{
